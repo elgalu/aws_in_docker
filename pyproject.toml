@@ -1,0 +1,98 @@
+[tool.poetry]
+name = "aws_in_docker"
+# Note tbump will bump `version` and also `aws_in_docker/__init__.py`
+version = "0.0.2"
+description = "Mock EC2 with moto + launch instances in Docker"
+authors = ["Leo Gallucci <elgalu3@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/elgalu/aws_in_docker"
+# https://pypi.org/classifiers/
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Development Status :: 4 - Beta",
+]
+packages = [{ include = "aws_in_docker", from = "." }]
+
+[tool.poetry.urls]
+Changelog = "https://github.com/elgalu/aws_in_docker/blob/main/Changelog.md"
+Issues = "https://github.com/elgalu/aws_in_docker/issues"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+# https://github.com/madzak/python-json-logger
+python_json_logger = "^0.1"
+PyYAML = "^5.1"
+
+# [tool.pylint.'MESSAGES CONTROL']
+# disable = "bad-continuation,missing-docstring"
+
+[tool.pylint.'REPORTS']
+msg-template = "{path}:{line}: [{msg_id}({symbol}),{obj}]{msg}"
+reports = "no" # https://docs.sonarqube.org/latest/analysis/languages/python/#pylint
+
+[tool.pytest.ini_options]
+junit_family = "legacy"
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.8"  # https://github.com/PyCQA/pylint.git
+pytest = "^6.2"
+pytest-cov = "^2.12"
+pytest-html = "^2.1"
+requests_mock = "^1.9"
+mypy = { git = "https://github.com/python/mypy.git", rev = "1573336d12ec56454b6a3ed6633acff8bb2c4737" }
+# mypy = "^0.902"
+autopep8 = "^1.5"
+invoke = "^1.5.0"
+pre-commit = "^2.13"
+flake8 = "^3.9"
+pydocstyle = "^6.1.1"
+black = { version = "^20.8b1", allow-prereleases = true }
+# No `safety` pre-commit hook is available yet:
+# https://github.com/pyupio/safety/issues/336
+safety = "^1.10"
+# https://github.com/twisted/towncrier
+towncrier = "^21.3.0"
+
+# Bump software releases with https://github.com/dmerejkowsky/tbump
+# See `tbump.toml`
+tbump = { git = "https://github.com/dmerejkowsky/tbump.git", rev = "1799825ad30954bf04c8e5b842ead7b8f247f3a8" }
+
+[tool.mypy]
+# https://dokk.org/documentation/mypy/v0.471/config_file/#global-flags
+# exclude = "tasks.py"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = false
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+disallow_untyped_defs = true
+
+[tool.black]
+# https://black.readthedocs.io/en/stable/pyproject_toml.html#configuration-format
+line-length = 101
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["poetry>=1.2.0a1"]
+build-backend = "poetry.masonry.api"
