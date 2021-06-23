@@ -7,6 +7,7 @@ labels: bug
 # Bug
 
 Please complete:
+
 * OS: **?**
 * Python version `import sys; print(sys.version)`: **?**
 

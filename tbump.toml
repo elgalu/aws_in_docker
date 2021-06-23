@@ -1,8 +1,5 @@
-# How to release new package versions
-#   1st time: tbump init --pyproject "0.0.4"
-#   2nd time: tbump "0.0.5"
-#   dont-git: tbump "0.0.5" --only-patch
-#   CI/CD...: tbump "0.0.5" --non-interactive
+# How to release new package versions:
+#   see CONTRIBUTING.md
 
 # Moving this settings to pyproject.toml doesn't current work properly:
 # https://github.com/dmerejkowsky/tbump/issues/104
@@ -10,6 +7,7 @@
 github_url = "https://github.com/elgalu/aws_in_docker"
 
 [version]
+# Do not change the version here but rather `tbump "0.0.5" --only-patch`
 current = "0.0.2"
 regex = '''
   (?P<major>\d+)
@@ -20,7 +18,7 @@ regex = '''
   '''
 
 [git]
-message_template  = "Bump to {new_version}"
+message_template  = "[ci skip] Bump to {new_version}"
 tag_template = "{new_version}"
 
 [[file]]
@@ -42,3 +40,6 @@ cmd = "poetry run invoke hooks"
 [[after_push]]
 name = "Publish to PyPi"
 cmd = "scripts/build_and_publish.sh"
+[[after_push]]
+name = "Merge to main"
+cmd = "scripts/merge_to_main.sh"

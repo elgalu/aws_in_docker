@@ -1,49 +1,70 @@
 [tool.poetry]
 name = "aws_in_docker"
 # Note tbump will bump `version` and also `aws_in_docker/__init__.py`
+# Do not change the version here but rather `tbump "0.0.5" --only-patch`
 version = "0.0.2"
 description = "Mock EC2 with moto + launch instances in Docker"
 authors = ["Leo Gallucci <elgalu3@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/elgalu/aws_in_docker"
+# project_urls # TODO
+  # Bug Tracker = https://github.com/ansible-community/ansible-lint/issues
+  # CI: GitHub = https://github.com/ansible-community/ansible-lint/actions?query=workflow:gh+branch:master+event:push
+  # Code of Conduct = https://docs.ansible.com/ansible/latest/community/code_of_conduct.html
+  # Documentation = https://ansible-lint.readthedocs.io/en/latest/
+  # Mailing lists = https://docs.ansible.com/ansible-community/latest/community/communication.html#mailing-list-information
+  # Source Code = https://github.com/ansible-community/ansible-lint
+keywords = ["aws", "ec2", "docker", "mock", "testing"]
+license = "Apache 2.0"
 # https://pypi.org/classifiers/
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
-  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: Implementation",
+  # TODO: support (test) also PyPy python implementation
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Development Status :: 3 - Alpha",
+  # "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "Operating System :: POSIX :: Linux",
+  # "Operating System :: MacOS :: MacOS X",
+  "Environment :: Console",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Utilities",
+  "Topic :: System :: Emulators",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Software Development :: Testing :: Acceptance",
+  "Topic :: Software Development :: Testing :: Mocking",
+  "Typing :: Typed",
 ]
 packages = [{ include = "aws_in_docker", from = "." }]
 
 [tool.poetry.urls]
-Changelog = "https://github.com/elgalu/aws_in_docker/blob/main/Changelog.md"
+Changelog = "https://github.com/elgalu/aws_in_docker/blob/main/CHANGELOG.md"
 Issues = "https://github.com/elgalu/aws_in_docker/issues"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 # https://github.com/madzak/python-json-logger
 python_json_logger = "^0.1"
+# https://github.com/yaml/pyyaml
 PyYAML = "^5.1"
-
-# [tool.pylint.'MESSAGES CONTROL']
-# disable = "bad-continuation,missing-docstring"
-
-[tool.pylint.'REPORTS']
-msg-template = "{path}:{line}: [{msg_id}({symbol}),{obj}]{msg}"
-reports = "no" # https://docs.sonarqube.org/latest/analysis/languages/python/#pylint
-
-[tool.pytest.ini_options]
-junit_family = "legacy"
-minversion = "6.0"
-addopts = "-ra -q"
-testpaths = ["tests"]
+# https://github.com/docker/docker-py
+docker = "^5.0.0"
+boto3 = "^1.17.99"
+# TODO: confirm if dev dependencies or not:
+requests_mock = "^1.9"
+sshpubkeys = "^3.3.1"
 
 [tool.poetry.dev-dependencies]
-pylint = "^2.8"  # https://github.com/PyCQA/pylint.git
+# https://github.com/PyCQA/pylint
+pylint = "^2.8"
 pytest = "^6.2"
 pytest-cov = "^2.12"
 pytest-html = "^2.1"
-requests_mock = "^1.9"
 mypy = { git = "https://github.com/python/mypy.git", rev = "1573336d12ec56454b6a3ed6633acff8bb2c4737" }
-# mypy = "^0.902"
 autopep8 = "^1.5"
 invoke = "^1.5.0"
 pre-commit = "^2.13"
@@ -53,16 +74,29 @@ black = { version = "^20.8b1", allow-prereleases = true }
 # No `safety` pre-commit hook is available yet:
 # https://github.com/pyupio/safety/issues/336
 safety = "^1.10"
-# https://github.com/twisted/towncrier
+# Roll-up CHANGELOG.md with https://github.com/twisted/towncrier
 towncrier = "^21.3.0"
-
 # Bump software releases with https://github.com/dmerejkowsky/tbump
 # See `tbump.toml`
-tbump = { git = "https://github.com/dmerejkowsky/tbump.git", rev = "1799825ad30954bf04c8e5b842ead7b8f247f3a8" }
+tbump = { git = "https://github.com/dmerejkowsky/tbump.git", rev = "03988d5d2267ddd4a33b3c4196b05b7f24f0a0a4" }
+# Using notebooks for debugging + plotting
+ipykernel = "^5.5.5"
+
+[tool.pylint.'REPORTS']
+msg-template = "{path}:{line}: [{msg_id}({symbol}),{obj}]{msg}"
+reports = "no" # https://docs.sonarqube.org/latest/analysis/languages/python/#pylint
+
+[tool.pylint.'MESSAGES CONTROL']
+# disable = "bad-continuation,missing-docstring"
+
+[tool.pytest.ini_options]
+junit_family = "legacy"
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
 
 [tool.mypy]
 # https://dokk.org/documentation/mypy/v0.471/config_file/#global-flags
-# exclude = "tasks.py"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = false
@@ -94,5 +128,5 @@ exclude = '''
 '''
 
 [build-system]
-requires = ["poetry>=1.2.0a1"]
+requires = ["poetry>=1.1.6"]
 build-backend = "poetry.masonry.api"

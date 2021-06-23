@@ -1,0 +1,935 @@
+# Introduction
+
+This project attempts to mock some AWS services like EC2 and launch Docker containers instead. A very small subset of the APIs are currently implemented, only the ones that fit our current use case. If you need additional functionality please provide a pull request.
+
+<!-- Based on https://github.com/spulec/moto/blob/16f4dc87dc87f04/IMPLEMENTATION_COVERAGE.md -->
+
+# Currently implemented Services
+
+<!-- prettier-ignore -->
++---------------------------+-----------------------+------------------------------------+
+| Service Name              | Decorator             | Development Status                 |
++===========================+=======================+====================================+
+| EC2                       | @wrap_ec2             | minimal endpoints done             |
++---------------------------+-----------------------+------------------------------------+
+
+<!-- Based on https://github.com/spulec/moto/blob/cf3cf8b1346b4e/docs/index.rst -->
+
+## ec2
+
+<details>
+<summary>1% implemented</summary>
+
+-   [ ] accept_reserved_instances_exchange_quote
+-   [ ] accept_transit_gateway_multicast_domain_associations
+-   [ ] accept_transit_gateway_peering_attachment
+-   [ ] accept_transit_gateway_vpc_attachment
+-   [ ] accept_vpc_endpoint_connections
+-   [ ] accept_vpc_peering_connection @moto
+-   [ ] advertise_byoip_cidr
+-   [ ] allocate_address @moto
+-   [ ] allocate_hosts
+-   [ ] apply_security_groups_to_client_vpn_target_network
+-   [ ] assign_ipv6_addresses
+-   [ ] assign_private_ip_addresses
+-   [ ] associate_address @moto
+-   [ ] associate_client_vpn_target_network
+-   [ ] associate_dhcp_options @moto
+-   [ ] associate_enclave_certificate_iam_role
+-   [ ] associate_iam_instance_profile @moto
+-   [ ] associate_route_table @moto
+-   [ ] associate_subnet_cidr_block
+-   [ ] associate_transit_gateway_multicast_domain
+-   [ ] associate_transit_gateway_route_table
+-   [ ] associate_vpc_cidr_block @moto
+-   [ ] attach_classic_link_vpc
+-   [ ] attach_internet_gateway @moto
+-   [ ] attach_network_interface @moto
+-   [ ] attach_volume @moto
+-   [ ] attach_vpn_gateway @moto
+-   [ ] authorize_client_vpn_ingress
+-   [ ] authorize_security_group_egress @moto
+-   [ ] authorize_security_group_ingress @moto
+-   [ ] bundle_instance
+-   [ ] cancel_bundle_task
+-   [ ] cancel_capacity_reservation
+-   [ ] cancel_conversion_task
+-   [ ] cancel_export_task
+-   [ ] cancel_import_task
+-   [ ] cancel_reserved_instances_listing
+-   [ ] cancel_spot_fleet_requests @moto
+-   [ ] cancel_spot_instance_requests @moto
+-   [ ] confirm_product_instance
+-   [ ] copy_fpga_image
+-   [ ] copy_image @moto
+-   [ ] copy_snapshot @moto
+-   [ ] create_capacity_reservation
+-   [ ] create_carrier_gateway
+-   [ ] create_client_vpn_endpoint
+-   [ ] create_client_vpn_route
+-   [ ] create_customer_gateway @moto
+-   [ ] create_default_subnet
+-   [ ] create_default_vpc
+-   [ ] create_dhcp_options @moto
+-   [ ] create_egress_only_internet_gateway
+-   [ ] create_fleet
+-   [ ] create_flow_logs @moto
+-   [ ] create_fpga_image
+-   [ ] create_image @moto
+-   [ ] create_instance_export_task
+-   [ ] create_internet_gateway @moto
+-   [ ] create_key_pair @moto
+-   [ ] create_launch_template @moto
+-   [ ] create_launch_template_version
+-   [ ] create_local_gateway_route
+-   [ ] create_local_gateway_route_table_vpc_association
+-   [ ] create_managed_prefix_list
+-   [ ] create_nat_gateway @moto
+-   [ ] create_network_acl @moto
+-   [ ] create_network_acl_entry @moto
+-   [ ] create_network_insights_path
+-   [ ] create_network_interface @moto
+-   [ ] create_network_interface_permission
+-   [ ] create_placement_group
+-   [ ] create_reserved_instances_listing
+-   [ ] create_route @moto
+-   [ ] create_route_table @moto
+-   [ ] create_security_group @moto
+-   [ ] create_snapshot @moto
+-   [ ] create_snapshots
+-   [ ] create_spot_datafeed_subscription
+-   [ ] create_subnet @moto
+-   [ ] create_tags @moto
+-   [ ] create_traffic_mirror_filter
+-   [ ] create_traffic_mirror_filter_rule
+-   [ ] create_traffic_mirror_session
+-   [ ] create_traffic_mirror_target
+-   [ ] create_transit_gateway
+-   [ ] create_transit_gateway_connect
+-   [ ] create_transit_gateway_connect_peer
+-   [ ] create_transit_gateway_multicast_domain
+-   [ ] create_transit_gateway_peering_attachment
+-   [ ] create_transit_gateway_prefix_list_reference
+-   [ ] create_transit_gateway_route
+-   [ ] create_transit_gateway_route_table
+-   [ ] create_transit_gateway_vpc_attachment
+-   [ ] create_volume @moto
+-   [ ] create_vpc @moto
+-   [ ] create_vpc_endpoint @moto
+-   [ ] create_vpc_endpoint_connection_notification
+-   [ ] create_vpc_endpoint_service_configuration
+-   [ ] create_vpc_peering_connection @moto
+-   [ ] create_vpn_connection @moto
+-   [ ] create_vpn_connection_route
+-   [ ] create_vpn_gateway @moto
+-   [ ] delete_carrier_gateway
+-   [ ] delete_client_vpn_endpoint
+-   [ ] delete_client_vpn_route
+-   [ ] delete_customer_gateway @moto
+-   [ ] delete_dhcp_options
+-   [ ] delete_egress_only_internet_gateway
+-   [ ] delete_fleets
+-   [ ] delete_flow_logs @moto
+-   [ ] delete_fpga_image
+-   [ ] delete_internet_gateway @moto
+-   [ ] delete_key_pair @moto
+-   [ ] delete_launch_template
+-   [ ] delete_launch_template_versions
+-   [ ] delete_local_gateway_route
+-   [ ] delete_local_gateway_route_table_vpc_association
+-   [ ] delete_managed_prefix_list
+-   [ ] delete_nat_gateway @moto
+-   [ ] delete_network_acl @moto
+-   [ ] delete_network_acl_entry @moto
+-   [ ] delete_network_insights_analysis
+-   [ ] delete_network_insights_path
+-   [ ] delete_network_interface @moto
+-   [ ] delete_network_interface_permission
+-   [ ] delete_placement_group
+-   [ ] delete_queued_reserved_instances
+-   [ ] delete_route @moto
+-   [ ] delete_route_table @moto
+-   [ ] delete_security_group @moto
+-   [ ] delete_snapshot @moto
+-   [ ] delete_spot_datafeed_subscription
+-   [ ] delete_subnet @moto
+-   [ ] delete_tags @moto
+-   [ ] delete_traffic_mirror_filter
+-   [ ] delete_traffic_mirror_filter_rule
+-   [ ] delete_traffic_mirror_session
+-   [ ] delete_traffic_mirror_target
+-   [ ] delete_transit_gateway
+-   [ ] delete_transit_gateway_connect
+-   [ ] delete_transit_gateway_connect_peer
+-   [ ] delete_transit_gateway_multicast_domain
+-   [ ] delete_transit_gateway_peering_attachment
+-   [ ] delete_transit_gateway_prefix_list_reference
+-   [ ] delete_transit_gateway_route
+-   [ ] delete_transit_gateway_route_table
+-   [ ] delete_transit_gateway_vpc_attachment
+-   [ ] delete_volume @moto
+-   [ ] delete_vpc @moto
+-   [ ] delete_vpc_endpoint_connection_notifications
+-   [ ] delete_vpc_endpoint_service_configurations
+-   [ ] delete_vpc_endpoints
+-   [ ] delete_vpc_peering_connection @moto
+-   [ ] delete_vpn_connection @moto
+-   [ ] delete_vpn_connection_route
+-   [ ] delete_vpn_gateway @moto
+-   [ ] deprovision_byoip_cidr
+-   [ ] deregister_image @moto
+-   [ ] deregister_instance_event_notification_attributes
+-   [ ] deregister_transit_gateway_multicast_group_members
+-   [ ] deregister_transit_gateway_multicast_group_sources
+-   [ ] describe_account_attributes
+-   [ ] describe_addresses @moto
+-   [ ] describe_aggregate_id_format
+-   [ ] describe_availability_zones @moto
+-   [ ] describe_bundle_tasks
+-   [ ] describe_byoip_cidrs
+-   [ ] describe_capacity_reservations
+-   [ ] describe_carrier_gateways
+-   [ ] describe_classic_link_instances
+-   [ ] describe_client_vpn_authorization_rules
+-   [ ] describe_client_vpn_connections
+-   [ ] describe_client_vpn_endpoints
+-   [ ] describe_client_vpn_routes
+-   [ ] describe_client_vpn_target_networks
+-   [ ] describe_coip_pools
+-   [ ] describe_conversion_tasks
+-   [ ] describe_customer_gateways
+-   [ ] describe_dhcp_options @moto
+-   [ ] describe_egress_only_internet_gateways
+-   [ ] describe_elastic_gpus
+-   [ ] describe_export_image_tasks
+-   [ ] describe_export_tasks
+-   [ ] describe_fast_snapshot_restores
+-   [ ] describe_fleet_history
+-   [ ] describe_fleet_instances
+-   [ ] describe_fleets
+-   [ ] describe_flow_logs @moto
+-   [ ] describe_fpga_image_attribute
+-   [ ] describe_fpga_images
+-   [ ] describe_host_reservation_offerings
+-   [ ] describe_host_reservations
+-   [ ] describe_hosts
+-   [ ] describe_iam_instance_profile_associations @moto
+-   [ ] describe_id_format
+-   [ ] describe_identity_id_format
+-   [ ] describe_image_attribute
+-   [ ] describe_images @moto
+-   [ ] describe_import_image_tasks
+-   [ ] describe_import_snapshot_tasks
+-   [ ] describe_instance_attribute @moto
+-   [ ] describe_instance_credit_specifications @moto
+-   [ ] describe_instance_event_notification_attributes
+-   [ ] describe_instance_status
+-   [ ] describe_instance_type_offerings @moto
+-   [ ] describe_instance_types @moto
+-   [ ] describe_instances
+-   [ ] describe_internet_gateways @moto
+-   [ ] describe_ipv6_pools
+-   [ ] describe_key_pairs @moto
+-   [ ] describe_launch_template_versions
+-   [ ] describe_launch_templates
+-   [ ] describe_local_gateway_route_table_virtual_interface_group_associations
+-   [ ] describe_local_gateway_route_table_vpc_associations
+-   [ ] describe_local_gateway_route_tables
+-   [ ] describe_local_gateway_virtual_interface_groups
+-   [ ] describe_local_gateway_virtual_interfaces
+-   [ ] describe_local_gateways
+-   [ ] describe_managed_prefix_lists
+-   [ ] describe_moving_addresses
+-   [ ] describe_nat_gateways
+-   [ ] describe_network_acls @moto
+-   [ ] describe_network_insights_analyses
+-   [ ] describe_network_insights_paths
+-   [ ] describe_network_interface_attribute
+-   [ ] describe_network_interface_permissions
+-   [ ] describe_network_interfaces @moto
+-   [ ] describe_placement_groups
+-   [ ] describe_prefix_lists
+-   [ ] describe_principal_id_format
+-   [ ] describe_public_ipv4_pools
+-   [ ] describe_regions @moto
+-   [ ] describe_reserved_instances
+-   [ ] describe_reserved_instances_listings
+-   [ ] describe_reserved_instances_modifications
+-   [ ] describe_reserved_instances_offerings
+-   [ ] describe_route_tables
+-   [ ] describe_scheduled_instance_availability
+-   [ ] describe_scheduled_instances
+-   [ ] describe_security_group_references
+-   [ ] describe_security_groups @moto
+-   [ ] describe_snapshot_attribute
+-   [ ] describe_snapshots @moto
+-   [ ] describe_spot_datafeed_subscription
+-   [ ] describe_spot_fleet_instances @moto
+-   [ ] describe_spot_fleet_request_history
+-   [ ] describe_spot_fleet_requests @moto
+-   [ ] describe_spot_instance_requests @moto
+-   [ ] describe_spot_price_history
+-   [ ] describe_stale_security_groups
+-   [ ] describe_subnets
+-   [ ] describe_tags @moto
+-   [ ] describe_traffic_mirror_filters
+-   [ ] describe_traffic_mirror_sessions
+-   [ ] describe_traffic_mirror_targets
+-   [ ] describe_transit_gateway_attachments
+-   [ ] describe_transit_gateway_connect_peers
+-   [ ] describe_transit_gateway_connects
+-   [ ] describe_transit_gateway_multicast_domains
+-   [ ] describe_transit_gateway_peering_attachments
+-   [ ] describe_transit_gateway_route_tables
+-   [ ] describe_transit_gateway_vpc_attachments
+-   [ ] describe_transit_gateways
+-   [ ] describe_volume_attribute
+-   [ ] describe_volume_status
+-   [ ] describe_volumes @moto
+-   [ ] describe_volumes_modifications
+-   [ ] describe_vpc_attribute @moto
+-   [ ] describe_vpc_classic_link
+-   [ ] describe_vpc_classic_link_dns_support
+-   [ ] describe_vpc_endpoint_connection_notifications
+-   [ ] describe_vpc_endpoint_connections
+-   [ ] describe_vpc_endpoint_service_configurations
+-   [ ] describe_vpc_endpoint_service_permissions
+-   [ ] describe_vpc_endpoint_services
+-   [ ] describe_vpc_endpoints
+-   [ ] describe_vpc_peering_connections
+-   [ ] describe_vpcs
+-   [ ] describe_vpn_connections @moto
+-   [ ] describe_vpn_gateways
+-   [ ] detach_classic_link_vpc
+-   [ ] detach_internet_gateway @moto
+-   [ ] detach_network_interface @moto
+-   [ ] detach_volume @moto
+-   [ ] detach_vpn_gateway @moto
+-   [ ] disable_ebs_encryption_by_default
+-   [ ] disable_fast_snapshot_restores
+-   [ ] disable_transit_gateway_route_table_propagation
+-   [ ] disable_vgw_route_propagation
+-   [ ] disable_vpc_classic_link @moto
+-   [ ] disable_vpc_classic_link_dns_support @moto
+-   [ ] disassociate_address @moto
+-   [ ] disassociate_client_vpn_target_network
+-   [ ] disassociate_enclave_certificate_iam_role
+-   [ ] disassociate_iam_instance_profile @moto
+-   [ ] disassociate_route_table @moto
+-   [ ] disassociate_subnet_cidr_block
+-   [ ] disassociate_transit_gateway_multicast_domain
+-   [ ] disassociate_transit_gateway_route_table
+-   [ ] disassociate_vpc_cidr_block @moto
+-   [ ] enable_ebs_encryption_by_default
+-   [ ] enable_fast_snapshot_restores
+-   [ ] enable_transit_gateway_route_table_propagation
+-   [ ] enable_vgw_route_propagation
+-   [ ] enable_volume_io
+-   [ ] enable_vpc_classic_link @moto
+-   [ ] enable_vpc_classic_link_dns_support @moto
+-   [ ] export_client_vpn_client_certificate_revocation_list
+-   [ ] export_client_vpn_client_configuration
+-   [ ] export_image
+-   [ ] export_transit_gateway_routes
+-   [ ] get_associated_enclave_certificate_iam_roles
+-   [ ] get_associated_ipv6_pool_cidrs
+-   [ ] get_capacity_reservation_usage
+-   [ ] get_coip_pool_usage
+-   [ ] get_console_output
+-   [ ] get_console_screenshot
+-   [ ] get_default_credit_specification
+-   [ ] get_ebs_default_kms_key_id
+-   [ ] get_ebs_encryption_by_default
+-   [ ] get_groups_for_capacity_reservation
+-   [ ] get_host_reservation_purchase_preview
+-   [ ] get_launch_template_data
+-   [ ] get_managed_prefix_list_associations
+-   [ ] get_managed_prefix_list_entries
+-   [ ] get_password_data
+-   [ ] get_reserved_instances_exchange_quote
+-   [ ] get_transit_gateway_attachment_propagations
+-   [ ] get_transit_gateway_multicast_domain_associations
+-   [ ] get_transit_gateway_prefix_list_references
+-   [ ] get_transit_gateway_route_table_associations
+-   [ ] get_transit_gateway_route_table_propagations
+-   [ ] import_client_vpn_client_certificate_revocation_list
+-   [ ] import_image
+-   [ ] import_instance
+-   [ ] import_key_pair @moto
+-   [ ] import_snapshot
+-   [ ] import_volume
+-   [ ] modify_availability_zone_group
+-   [ ] modify_capacity_reservation
+-   [ ] modify_client_vpn_endpoint
+-   [ ] modify_default_credit_specification
+-   [ ] modify_ebs_default_kms_key_id
+-   [ ] modify_fleet
+-   [ ] modify_fpga_image_attribute
+-   [ ] modify_hosts
+-   [ ] modify_id_format
+-   [ ] modify_identity_id_format
+-   [ ] modify_image_attribute
+-   [ ] modify_instance_attribute @moto
+-   [ ] modify_instance_capacity_reservation_attributes
+-   [ ] modify_instance_credit_specification
+-   [ ] modify_instance_event_start_time
+-   [ ] modify_instance_metadata_options
+-   [ ] modify_instance_placement
+-   [ ] modify_launch_template
+-   [ ] modify_managed_prefix_list
+-   [ ] modify_network_interface_attribute @moto
+-   [ ] modify_reserved_instances
+-   [ ] modify_snapshot_attribute
+-   [ ] modify_spot_fleet_request @moto
+-   [ ] modify_subnet_attribute @moto
+-   [ ] modify_traffic_mirror_filter_network_services
+-   [ ] modify_traffic_mirror_filter_rule
+-   [ ] modify_traffic_mirror_session
+-   [ ] modify_transit_gateway
+-   [ ] modify_transit_gateway_prefix_list_reference
+-   [ ] modify_transit_gateway_vpc_attachment
+-   [ ] modify_volume
+-   [ ] modify_volume_attribute
+-   [ ] modify_vpc_attribute @moto
+-   [ ] modify_vpc_endpoint
+-   [ ] modify_vpc_endpoint_connection_notification
+-   [ ] modify_vpc_endpoint_service_configuration
+-   [ ] modify_vpc_endpoint_service_permissions
+-   [ ] modify_vpc_peering_connection_options
+-   [ ] modify_vpc_tenancy
+-   [ ] modify_vpn_connection
+-   [ ] modify_vpn_connection_options
+-   [ ] modify_vpn_tunnel_certificate
+-   [ ] modify_vpn_tunnel_options
+-   [ ] monitor_instances
+-   [ ] move_address_to_vpc
+-   [ ] provision_byoip_cidr
+-   [ ] purchase_host_reservation
+-   [ ] purchase_reserved_instances_offering
+-   [ ] purchase_scheduled_instances
+-   [ ] reboot_instances @moto
+-   [ ] register_image @moto
+-   [ ] register_instance_event_notification_attributes
+-   [ ] register_transit_gateway_multicast_group_members
+-   [ ] register_transit_gateway_multicast_group_sources
+-   [ ] reject_transit_gateway_multicast_domain_associations
+-   [ ] reject_transit_gateway_peering_attachment
+-   [ ] reject_transit_gateway_vpc_attachment
+-   [ ] reject_vpc_endpoint_connections
+-   [ ] reject_vpc_peering_connection @moto
+-   [ ] release_address @moto
+-   [ ] release_hosts
+-   [ ] replace_iam_instance_profile_association @moto
+-   [ ] replace_network_acl_association @moto
+-   [ ] replace_network_acl_entry @moto
+-   [ ] replace_route @moto
+-   [ ] replace_route_table_association @moto
+-   [ ] replace_transit_gateway_route
+-   [ ] report_instance_status
+-   [ ] request_spot_fleet @moto
+-   [ ] request_spot_instances @moto
+-   [ ] reset_ebs_default_kms_key_id
+-   [ ] reset_fpga_image_attribute
+-   [ ] reset_image_attribute
+-   [ ] reset_instance_attribute
+-   [ ] reset_network_interface_attribute
+-   [ ] reset_snapshot_attribute
+-   [ ] restore_address_to_classic
+-   [ ] restore_managed_prefix_list_version
+-   [ ] revoke_client_vpn_ingress
+-   [ ] revoke_security_group_egress @moto
+-   [ ] revoke_security_group_ingress @moto
+-   [x] run_instances @moto
+-   [ ] run_scheduled_instances
+-   [ ] search_local_gateway_routes
+-   [ ] search_transit_gateway_multicast_groups
+-   [ ] search_transit_gateway_routes
+-   [ ] send_diagnostic_interrupt
+-   [ ] start_instances @moto
+-   [ ] start_network_insights_analysis
+-   [ ] start_vpc_endpoint_service_private_dns_verification
+-   [ ] stop_instances @moto
+-   [ ] terminate_client_vpn_connections
+-   [x] terminate_instances @moto
+-   [ ] unassign_ipv6_addresses
+-   [ ] unassign_private_ip_addresses
+-   [ ] unmonitor_instances
+-   [ ] update_security_group_rule_descriptions_egress
+-   [ ] update_security_group_rule_descriptions_ingress
+-   [ ] withdraw_byoip_cidr
+</details>
+
+## ebs
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] complete_snapshot
+-   [ ] get_snapshot_block
+-   [ ] list_changed_blocks
+-   [ ] list_snapshot_blocks
+-   [ ] put_snapshot_block
+-   [ ] start_snapshot
+</details>
+
+## ec2-instance-connect
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] send_ssh_public_key @moto
+</details>
+
+## sagemaker
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] add_association
+-   [ ] add_tags
+-   [ ] associate_trial_component
+-   [ ] create_action
+-   [ ] create_algorithm
+-   [ ] create_app
+-   [ ] create_app_image_config
+-   [ ] create_artifact
+-   [ ] create_auto_ml_job
+-   [ ] create_code_repository
+-   [ ] create_compilation_job
+-   [ ] create_context
+-   [ ] create_data_quality_job_definition
+-   [ ] create_device_fleet
+-   [ ] create_domain
+-   [ ] create_edge_packaging_job
+-   [ ] create_endpoint @moto
+-   [ ] create_endpoint_config @moto
+-   [ ] create_experiment
+-   [ ] create_feature_group
+-   [ ] create_flow_definition
+-   [ ] create_human_task_ui
+-   [ ] create_hyper_parameter_tuning_job
+-   [ ] create_image
+-   [ ] create_image_version
+-   [ ] create_labeling_job
+-   [ ] create_model @moto
+-   [ ] create_model_bias_job_definition
+-   [ ] create_model_explainability_job_definition
+-   [ ] create_model_package
+-   [ ] create_model_package_group
+-   [ ] create_model_quality_job_definition
+-   [ ] create_monitoring_schedule
+-   [ ] create_notebook_instance @moto
+-   [ ] create_notebook_instance_lifecycle_config @moto
+-   [ ] create_pipeline
+-   [ ] create_presigned_domain_url
+-   [ ] create_presigned_notebook_instance_url
+-   [ ] create_processing_job
+-   [ ] create_project
+-   [ ] create_training_job @moto
+-   [ ] create_transform_job
+-   [ ] create_trial
+-   [ ] create_trial_component
+-   [ ] create_user_profile
+-   [ ] create_workforce
+-   [ ] create_workteam
+-   [ ] delete_action
+-   [ ] delete_algorithm
+-   [ ] delete_app
+-   [ ] delete_app_image_config
+-   [ ] delete_artifact
+-   [ ] delete_association
+-   [ ] delete_code_repository
+-   [ ] delete_context
+-   [ ] delete_data_quality_job_definition
+-   [ ] delete_device_fleet
+-   [ ] delete_domain
+-   [ ] delete_endpoint @moto
+-   [ ] delete_endpoint_config @moto
+-   [ ] delete_experiment
+-   [ ] delete_feature_group
+-   [ ] delete_flow_definition
+-   [ ] delete_human_task_ui
+-   [ ] delete_image
+-   [ ] delete_image_version
+-   [ ] delete_model @moto
+-   [ ] delete_model_bias_job_definition
+-   [ ] delete_model_explainability_job_definition
+-   [ ] delete_model_package
+-   [ ] delete_model_package_group
+-   [ ] delete_model_package_group_policy
+-   [ ] delete_model_quality_job_definition
+-   [ ] delete_monitoring_schedule
+-   [ ] delete_notebook_instance @moto
+-   [ ] delete_notebook_instance_lifecycle_config @moto
+-   [ ] delete_pipeline
+-   [ ] delete_project
+-   [ ] delete_tags
+-   [ ] delete_trial
+-   [ ] delete_trial_component
+-   [ ] delete_user_profile
+-   [ ] delete_workforce
+-   [ ] delete_workteam
+-   [ ] deregister_devices
+-   [ ] describe_action
+-   [ ] describe_algorithm
+-   [ ] describe_app
+-   [ ] describe_app_image_config
+-   [ ] describe_artifact
+-   [ ] describe_auto_ml_job
+-   [ ] describe_code_repository
+-   [ ] describe_compilation_job
+-   [ ] describe_context
+-   [ ] describe_data_quality_job_definition
+-   [ ] describe_device
+-   [ ] describe_device_fleet
+-   [ ] describe_domain
+-   [ ] describe_edge_packaging_job
+-   [ ] describe_endpoint @moto
+-   [ ] describe_endpoint_config @moto
+-   [ ] describe_experiment
+-   [ ] describe_feature_group
+-   [ ] describe_flow_definition
+-   [ ] describe_human_task_ui
+-   [ ] describe_hyper_parameter_tuning_job
+-   [ ] describe_image
+-   [ ] describe_image_version
+-   [ ] describe_labeling_job
+-   [ ] describe_model @moto
+-   [ ] describe_model_bias_job_definition
+-   [ ] describe_model_explainability_job_definition
+-   [ ] describe_model_package
+-   [ ] describe_model_package_group
+-   [ ] describe_model_quality_job_definition
+-   [ ] describe_monitoring_schedule
+-   [ ] describe_notebook_instance
+-   [ ] describe_notebook_instance_lifecycle_config @moto
+-   [ ] describe_pipeline
+-   [ ] describe_pipeline_definition_for_execution
+-   [ ] describe_pipeline_execution
+-   [ ] describe_processing_job
+-   [ ] describe_project
+-   [ ] describe_subscribed_workteam
+-   [ ] describe_training_job @moto
+-   [ ] describe_transform_job
+-   [ ] describe_trial
+-   [ ] describe_trial_component
+-   [ ] describe_user_profile
+-   [ ] describe_workforce
+-   [ ] describe_workteam
+-   [ ] disable_sagemaker_servicecatalog_portfolio
+-   [ ] disassociate_trial_component
+-   [ ] enable_sagemaker_servicecatalog_portfolio
+-   [ ] get_device_fleet_report
+-   [ ] get_model_package_group_policy
+-   [ ] get_sagemaker_servicecatalog_portfolio_status
+-   [ ] get_search_suggestions
+-   [ ] list_actions
+-   [ ] list_algorithms
+-   [ ] list_app_image_configs
+-   [ ] list_apps
+-   [ ] list_artifacts
+-   [ ] list_associations
+-   [ ] list_auto_ml_jobs
+-   [ ] list_candidates_for_auto_ml_job
+-   [ ] list_code_repositories
+-   [ ] list_compilation_jobs
+-   [ ] list_contexts
+-   [ ] list_data_quality_job_definitions
+-   [ ] list_device_fleets
+-   [ ] list_devices
+-   [ ] list_domains
+-   [ ] list_edge_packaging_jobs
+-   [ ] list_endpoint_configs
+-   [ ] list_endpoints
+-   [ ] list_experiments
+-   [ ] list_feature_groups
+-   [ ] list_flow_definitions
+-   [ ] list_human_task_uis
+-   [ ] list_hyper_parameter_tuning_jobs
+-   [ ] list_image_versions
+-   [ ] list_images
+-   [ ] list_labeling_jobs
+-   [ ] list_labeling_jobs_for_workteam
+-   [ ] list_model_bias_job_definitions
+-   [ ] list_model_explainability_job_definitions
+-   [ ] list_model_package_groups
+-   [ ] list_model_packages
+-   [ ] list_model_quality_job_definitions
+-   [ ] list_models @moto
+-   [ ] list_monitoring_executions
+-   [ ] list_monitoring_schedules
+-   [ ] list_notebook_instance_lifecycle_configs
+-   [ ] list_notebook_instances
+-   [ ] list_pipeline_execution_steps
+-   [ ] list_pipeline_executions
+-   [ ] list_pipeline_parameters_for_execution
+-   [ ] list_pipelines
+-   [ ] list_processing_jobs
+-   [ ] list_projects
+-   [ ] list_subscribed_workteams
+-   [ ] list_tags
+-   [ ] list_training_jobs
+-   [ ] list_training_jobs_for_hyper_parameter_tuning_job
+-   [ ] list_transform_jobs
+-   [ ] list_trial_components
+-   [ ] list_trials
+-   [ ] list_user_profiles
+-   [ ] list_workforces
+-   [ ] list_workteams
+-   [ ] put_model_package_group_policy
+-   [ ] register_devices
+-   [ ] render_ui_template
+-   [ ] search
+-   [ ] start_monitoring_schedule
+-   [ ] start_notebook_instance @moto
+-   [ ] start_pipeline_execution
+-   [ ] stop_auto_ml_job
+-   [ ] stop_compilation_job
+-   [ ] stop_edge_packaging_job
+-   [ ] stop_hyper_parameter_tuning_job
+-   [ ] stop_labeling_job
+-   [ ] stop_monitoring_schedule
+-   [ ] stop_notebook_instance @moto
+-   [ ] stop_pipeline_execution
+-   [ ] stop_processing_job
+-   [ ] stop_training_job
+-   [ ] stop_transform_job
+-   [ ] update_action
+-   [ ] update_app_image_config
+-   [ ] update_artifact
+-   [ ] update_code_repository
+-   [ ] update_context
+-   [ ] update_device_fleet
+-   [ ] update_devices
+-   [ ] update_domain
+-   [ ] update_endpoint
+-   [ ] update_endpoint_weights_and_capacities
+-   [ ] update_experiment
+-   [ ] update_image
+-   [ ] update_model_package
+-   [ ] update_monitoring_schedule
+-   [ ] update_notebook_instance
+-   [ ] update_notebook_instance_lifecycle_config
+-   [ ] update_pipeline
+-   [ ] update_pipeline_execution
+-   [ ] update_training_job
+-   [ ] update_trial
+-   [ ] update_trial_component
+-   [ ] update_user_profile
+-   [ ] update_workforce
+-   [ ] update_workteam
+</details>
+
+## sagemaker-runtime
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] invoke_endpoint
+</details>
+
+## secretsmanager
+
+<details>
+<summary>% implemented</summary>
+
+-   [ ] cancel_rotate_secret
+-   [ ] create_secret @moto
+-   [ ] delete_resource_policy
+-   [ ] delete_secret @moto
+-   [ ] describe_secret @moto
+-   [ ] get_random_password @moto
+-   [ ] get_resource_policy @moto
+-   [ ] get_secret_value @moto
+-   [ ] list_secret_version_ids @moto
+-   [ ] list_secrets @moto
+-   [ ] put_resource_policy
+-   [ ] put_secret_value @moto
+-   [ ] restore_secret @moto
+-   [ ] rotate_secret @moto
+-   [ ] tag_resource @moto
+-   [ ] untag_resource @moto
+-   [ ] update_secret @moto
+-   [ ] update_secret_version_stage @moto
+-   [ ] validate_resource_policy
+</details>
+
+## sqs
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] add_permission @moto
+-   [ ] change_message_visibility @moto
+-   [ ] change_message_visibility_batch
+-   [ ] create_queue @moto
+-   [ ] delete_message @moto
+-   [ ] delete_message_batch
+-   [ ] delete_queue @moto
+-   [ ] get_queue_attributes @moto
+-   [ ] get_queue_url @moto
+-   [ ] list_dead_letter_source_queues @moto
+-   [ ] list_queue_tags @moto
+-   [ ] list_queues @moto
+-   [ ] purge_queue @moto
+-   [ ] receive_message
+-   [ ] remove_permission @moto
+-   [ ] send_message @moto
+-   [ ] send_message_batch @moto
+-   [ ] set_queue_attributes @moto
+-   [ ] tag_queue @moto
+-   [ ] untag_queue @moto
+</details>
+
+## ssm
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] add_tags_to_resource @moto
+-   [ ] cancel_command
+-   [ ] cancel_maintenance_window_execution
+-   [ ] create_activation
+-   [ ] create_association
+-   [ ] create_association_batch
+-   [ ] create_document @moto
+-   [ ] create_maintenance_window
+-   [ ] create_ops_item
+-   [ ] create_ops_metadata
+-   [ ] create_patch_baseline
+-   [ ] create_resource_data_sync
+-   [ ] delete_activation
+-   [ ] delete_association
+-   [ ] delete_document @moto
+-   [ ] delete_inventory
+-   [ ] delete_maintenance_window
+-   [ ] delete_ops_metadata
+-   [ ] delete_parameter @moto
+-   [ ] delete_parameters @moto
+-   [ ] delete_patch_baseline
+-   [ ] delete_resource_data_sync
+-   [ ] deregister_managed_instance
+-   [ ] deregister_patch_baseline_for_patch_group
+-   [ ] deregister_target_from_maintenance_window
+-   [ ] deregister_task_from_maintenance_window
+-   [ ] describe_activations
+-   [ ] describe_association
+-   [ ] describe_association_execution_targets
+-   [ ] describe_association_executions
+-   [ ] describe_automation_executions
+-   [ ] describe_automation_step_executions
+-   [ ] describe_available_patches
+-   [ ] describe_document @moto
+-   [ ] describe_document_permission
+-   [ ] describe_effective_instance_associations
+-   [ ] describe_effective_patches_for_patch_baseline
+-   [ ] describe_instance_associations_status
+-   [ ] describe_instance_information
+-   [ ] describe_instance_patch_states
+-   [ ] describe_instance_patch_states_for_patch_group
+-   [ ] describe_instance_patches
+-   [ ] describe_inventory_deletions
+-   [ ] describe_maintenance_window_execution_task_invocations
+-   [ ] describe_maintenance_window_execution_tasks
+-   [ ] describe_maintenance_window_executions
+-   [ ] describe_maintenance_window_schedule
+-   [ ] describe_maintenance_window_targets
+-   [ ] describe_maintenance_window_tasks
+-   [ ] describe_maintenance_windows
+-   [ ] describe_maintenance_windows_for_target
+-   [ ] describe_ops_items
+-   [ ] describe_parameters @moto
+-   [ ] describe_patch_baselines
+-   [ ] describe_patch_group_state
+-   [ ] describe_patch_groups
+-   [ ] describe_patch_properties
+-   [ ] describe_sessions
+-   [ ] get_automation_execution
+-   [ ] get_calendar_state
+-   [ ] get_command_invocation @moto
+-   [ ] get_connection_status
+-   [ ] get_default_patch_baseline
+-   [ ] get_deployable_patch_snapshot_for_instance
+-   [ ] get_document @moto
+-   [ ] get_inventory
+-   [ ] get_inventory_schema
+-   [ ] get_maintenance_window
+-   [ ] get_maintenance_window_execution
+-   [ ] get_maintenance_window_execution_task
+-   [ ] get_maintenance_window_execution_task_invocation
+-   [ ] get_maintenance_window_task
+-   [ ] get_ops_item
+-   [ ] get_ops_metadata
+-   [ ] get_ops_summary
+-   [ ] get_parameter @moto
+-   [ ] get_parameter_history @moto
+-   [ ] get_parameters @moto
+-   [ ] get_parameters_by_path @moto
+-   [ ] get_patch_baseline
+-   [ ] get_patch_baseline_for_patch_group
+-   [ ] get_service_setting
+-   [ ] label_parameter_version @moto
+-   [ ] list_association_versions
+-   [ ] list_associations
+-   [ ] list_command_invocations
+-   [ ] list_commands @moto
+-   [ ] list_compliance_items
+-   [ ] list_compliance_summaries
+-   [ ] list_document_metadata_history
+-   [ ] list_document_versions
+-   [ ] list_documents @moto
+-   [ ] list_inventory_entries
+-   [ ] list_ops_item_events
+-   [ ] list_ops_metadata
+-   [ ] list_resource_compliance_summaries
+-   [ ] list_resource_data_sync
+-   [ ] list_tags_for_resource @moto
+-   [ ] modify_document_permission
+-   [ ] put_compliance_items
+-   [ ] put_inventory
+-   [ ] put_parameter @moto
+-   [ ] register_default_patch_baseline
+-   [ ] register_patch_baseline_for_patch_group
+-   [ ] register_target_with_maintenance_window
+-   [ ] register_task_with_maintenance_window
+-   [ ] remove_tags_from_resource @moto
+-   [ ] reset_service_setting
+-   [ ] resume_session
+-   [ ] send_automation_signal
+-   [ ] send_command @moto
+-   [ ] start_associations_once
+-   [ ] start_automation_execution
+-   [ ] start_change_request_execution
+-   [ ] start_session
+-   [ ] stop_automation_execution
+-   [ ] terminate_session
+-   [ ] update_association
+-   [ ] update_association_status
+-   [ ] update_document @moto
+-   [ ] update_document_default_version @moto
+-   [ ] update_document_metadata
+-   [ ] update_maintenance_window
+-   [ ] update_maintenance_window_target
+-   [ ] update_maintenance_window_task
+-   [ ] update_managed_instance_role
+-   [ ] update_ops_item
+-   [ ] update_ops_metadata
+-   [ ] update_patch_baseline
+-   [ ] update_resource_data_sync
+-   [ ] update_service_setting
+</details>
+
+## sts
+
+<details>
+<summary>0% implemented</summary>
+
+-   [ ] assume_role @moto
+-   [ ] assume_role_with_saml @moto
+-   [ ] assume_role_with_web_identity @moto
+-   [ ] decode_authorization_message
+-   [ ] get_access_key_info
+-   [ ] get_caller_identity @moto
+-   [ ] get_federation_token @moto
+-   [ ] get_session_token @moto
+</details>
