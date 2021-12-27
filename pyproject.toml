@@ -89,6 +89,15 @@ reports = "no" # https://docs.sonarqube.org/latest/analysis/languages/python/#py
 [tool.pylint.'MESSAGES CONTROL']
 # disable = "bad-continuation,missing-docstring"
 
+[tool.pylint.'FORMAT']
+max-line-length = 120
+
+[tool.pylint.'DESIGN']
+max-attributes = 8
+
+[tool.pylint.'SIMILARITIES']
+ignore-imports = true
+
 [tool.pytest.ini_options]
 junit_family = "legacy"
 minversion = "6.0"
@@ -109,7 +118,7 @@ disallow_untyped_defs = true
 
 [tool.black]
 # https://black.readthedocs.io/en/stable/pyproject_toml.html#configuration-format
-line-length = 101
+line-length = 120
 target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
@@ -128,5 +137,5 @@ exclude = '''
 '''
 
 [build-system]
-requires = ["poetry>=1.1.6"]
+requires = ["poetry>=1.1.7"]
 build-backend = "poetry.masonry.api"

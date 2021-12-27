@@ -10,11 +10,11 @@ set -e
 # set -o pipefail: Don't mask errors from a command piped into another command
 set -o pipefail
 
-# set -x: prints all lines before running debug (debugging)
-set -x
-
 # set -u: treat unset variables as an error and exit immediately
 set -u
+
+# set -x: prints all lines before running debug (debugging)
+set -x
 
 _VERSION="$(python -c 'from aws_in_docker import __version__; print(__version__)')"
 

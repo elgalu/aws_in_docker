@@ -29,7 +29,7 @@ repos:
 
   # Automatically upgrades syntax for newer versions of the language
   - repo: https://github.com/asottile/pyupgrade
-    rev: "b844b43552d913dbd48025b0a4ac64612c3374f2" # frozen: v2.19.4
+    rev: "513fe79284cd8bae3274563c42c2df226381f6fe" # frozen: v2.20.0
     hooks:
       - id: pyupgrade
         stages: ["push"]
@@ -62,7 +62,7 @@ repos:
         # https://github.com/pre-commit/mirrors-pylint/issues/11
       - id: pylint
         name: pylint
-        entry: pylint --rcfile pyproject.toml aws_in_docker
+        entry: pylint --rcfile pyproject.toml slurmops
         types: ["python"]
         language: system
         pass_filenames: false
@@ -84,11 +84,27 @@ repos:
         files: ^pyproject.toml$
         stages: ["push"]
 
-  - repo: https://github.com/ansible/ansible-lint
-    rev: "573f3fca77f6b3c2a200b106af75cae2f6be30da" # frozen: v5.1.0a1
-    hooks:
-      - id: ansible-lint
-        args: ["--force-color"]
+      # - id: ansible-lint
+      #   name: ansible-lint
+      #   description: Lint Ansible files
+      #   entry: ansible-lint
+      #   args: ["--force-color", "-c", ".ansible-lint"]
+      #   language: system
+      #   types: ["yaml"]
+      #   pass_filenames: false
+      #   files: \.(yaml|yml)$
+      #   # stages: ["commit", "push"]
+
+  # Run with `pre-commit run ansible-lint`
+  # - repo: https://github.com/ansible/ansible-lint
+  #   # rev: "573f3fca77f6b3c2a200b106af75cae2f6be30da" # frozen: v5.1.0a1
+  #   # rev: "v4.3.7" to avoid https://github.com/ansible-community/ansible-lint/discussions/1150#discussioncomment-965587
+  #   rev: "v4.3.7"
+  #   hooks:
+  #     - id: ansible-lint
+  #       args: ["--force-color", "-c", ".ansible-lint"]
+  #       additional_dependencies:
+  #         - ansible>=2.9,<2.10
 
   - repo: https://github.com/codespell-project/codespell
     rev: "01da43d753cdff4ea7dff952b4f5317450af31e3" # frozen: v2.1.0
@@ -123,14 +139,14 @@ repos:
 
   # Enable hadolint if you have Dockerfile(s) in your project
   # https://github.com/hadolint/hadolint#configure
-  - repo: https://github.com/hadolint/hadolint
-    rev: "37c7a2f9d6a8dfde908e7766575f4ff3000aea97" # frozen: v2.5.0
-    hooks:
-      - id: hadolint
+  # - repo: https://github.com/hadolint/hadolint
+  #   rev: "37c7a2f9d6a8dfde908e7766575f4ff3000aea97" # frozen: v2.5.0
+  #   hooks:
+  #     - id: hadolint
 
   # https://github.com/igorshubovych/markdownlint-cli#configuration
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: "596386e6a7da92547c4fc6b94fce59bcbc8290ee" # frozen: v0.27.1
+    rev: "d6e415450ce274073fffad32c6503ad35a9cacea" # frozen: v0.27.1
     hooks:
       - id: markdownlint
         args: ["--ignore", "towncrier-template.md"]
@@ -169,3 +185,13 @@ repos:
       - id: python-no-eval
       - id: python-check-mock-methods
       - id: python-check-blanket-noqa
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: "7cc5848088fd8412905ab79feea6c8edc3ac76c6" # frozen: 2.1.5
+    hooks:
+      # Forbid binary files from being committed
+      # - id: forbid-binary
+      # Shell scripts conform to shellcheck
+      - id: shellcheck
+      # Non-executable shell script filename ends in .sh
+      - id: script-must-have-extension

@@ -73,6 +73,13 @@ def hooks(c):  # type: ignore
     c.run("poetry run pre-commit run --all-files")
 
 
+@task(aliases=["upgrade"])
+def update(c):  # type: ignore
+    """Upgrade/update packages and hooks."""
+    c.run("poetry update")
+    c.run("pre-commit autoupdate --freeze")
+
+
 @task(aliases=["pylint"])
 def lint(c):  # type: ignore
     """Lint files and save report."""
